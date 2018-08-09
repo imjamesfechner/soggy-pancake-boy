@@ -14,7 +14,7 @@ void flip(int stack[], int n) {
 	int temp = 0;
 	int m = n;
 	
-	//swaps the positions of the pancakes from top to n, where n is the index
+	//swap the positions of the pancakes from top to n, where n is the index
 	//of the largest unsorted pancake
 	for(int i=0; i<n; i++) {
 		temp = stack[i];
@@ -23,16 +23,16 @@ void flip(int stack[], int n) {
 		n--;
 	}
 	
-	//changes which side of the flipped pancakes is burnt
+	//change which side of the flipped pancakes is burnt
 	for(int i=0; i<m+1; i++) {
 		stack[i] = stack[i]*-1;
 	}
 }
 
-//finds the largest pancake in the stack
+//find the largest pancake in the stack
 int is_max(int stack[], int n) {
 	int max, i;
-	//takes absolute value to account for the burnt side up (negative) pancakes
+	//take the absolute value to account for the burnt side up (negative) pancakes
 	for (max=0, i=0; i<n; i++) {
 		if (abs(stack[max]) <= abs(stack[i])) {
 			max = i;
@@ -45,7 +45,7 @@ int is_max(int stack[], int n) {
 int pancake_sort(int *stack, int height) {
 	int moves = 0;
 	
-	//first it searches the stack for the largest unsorted pancake
+	//search the stack for the largest unsorted pancake
 	//and flips it to the top of the stack
 	for (int h=height; h>1; h--) {
 		int max = is_max(stack, h);
@@ -57,14 +57,14 @@ int pancake_sort(int *stack, int height) {
 			}
 			
 			//if the pancake that is now on the top is burnt side up
-			//it will flip the pancake again
+			//flip the pancake again
 			if(stack[0] > 0) {
 				stack[0] = stack[0]*-1;
 				moves++;
 				print_array(stack, height);
 			}	
 			
-			//finally the whole unsorted stack is flipped
+			//finally flip the whole unsorted stack
 			flip(stack, h-1);
 			moves++;
 			print_array(stack, height);
